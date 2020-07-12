@@ -15,6 +15,7 @@ import {
   Text,
   StatusBar,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import {
   Header,
@@ -25,16 +26,20 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Counter from '../../components/Counter';
-
+import SignUpForm from '../../components/SignUpForm';
 import EnvironmentConstants from '../../constants/EnvironmentConstants';
-import {goToLaunchScene} from '../../utils/NavigationUtils';
+import {goToLaunchScene, goToScene} from '../../utils/NavigationUtils';
 import Images from '../../images';
 import I18n from '../../i18n/i18n';
-
+import {SIGN_UP_SCENE} from '../../constants/NavigationConstants';
 var global: any;
 const AppScene = () => {
   const goToLaunchScreen = () => {
     goToLaunchScene();
+  };
+
+  const goToScreen = () => {
+    goToScene(SIGN_UP_SCENE);
   };
   return (
     <Fragment>
@@ -50,6 +55,9 @@ const AppScene = () => {
             </View>
           )}
           <Image source={Images.ibHubsLogo} />
+          <TouchableOpacity style={styles.touchable} onPress={goToScreen}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text>{EnvironmentConstants.SAMPLE_ENV_VARIABLE}</Text>
@@ -89,6 +97,15 @@ const AppScene = () => {
 };
 
 const styles = StyleSheet.create({
+  buttonText: {
+    color: 'white',
+  },
+  touchable: {
+    backgroundColor: '#1e90ff',
+    width: 70,
+    margin: 10,
+    padding: 10,
+  },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
